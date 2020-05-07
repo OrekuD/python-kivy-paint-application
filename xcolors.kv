@@ -1,0 +1,55 @@
+WindowManager:
+    MainScreen:
+    CanvasScreen:
+
+<MainScreen>:
+
+    name: "main"
+
+    GridLayout:
+        cols: 2
+
+        Button:
+            size_hint: (0.16, 0.3)
+            pos_hint: {"center": 0.5}
+            font_name: "Roboto"
+            font_size: 40
+            text: "Canvas"
+            background_color: (1, 0, 0.6, 1)
+            on_press: app.root.current = "canvas"
+
+        Image:
+            source: "2.1.jpg"
+
+<ColorButton@RadioButton>:
+    group: "color"
+    on_release: app.canvas_widget.set_color(self.background_color)
+
+
+
+<LineWithButton@ToggleButton>:
+    group: "line_width"
+    on_release: app.set_line_width(self.text)
+    background_color: (1, 1, 1, 1)
+
+
+<CanvasScreen>:
+    name: "canvas"
+
+    BoxLayout:
+        size: (50, 50)
+        size_hint: (0.4, 0.07)
+        pos_hint: {"top": 1, "left": 1}
+        cols: 1
+
+        Button:
+            font_size: 13
+            text: "Go back"
+            on_press:
+                app.root.current = "main"
+                root.manager.transition.direction = "down"
+
+        Button:
+            font_size: 13
+            text: "Clear canvas"
+            on_release: root.clear()

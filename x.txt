@@ -1,0 +1,138 @@
+WindowManager:
+    MainScreen:
+    CanvasScreen:
+    ExitScreen:
+
+
+<MainScreen>:
+
+    name: "main"
+
+    GridLayout:
+        cols: 2
+
+        Button:
+            size_hint: (0.16, 0.3)
+            pos_hint: {"center": 0.5}
+            font_name: "Roboto"
+            font_size: 40
+            text: "Create"
+            background_color: (1, 0.6, 0.9, 1)
+            on_press: app.root.current = "canvas"
+
+        Image:
+            source: "2.jpg"
+
+<ColorButton@RadioButton>:
+    group: "color"
+    on_release: app.canvas_widget.set_color(self.background_color)
+
+
+
+<LineWithButton@ToggleButton>:
+    group: "line_width"
+    on_release: app.set_line_width(self.text)
+    background_color: (1, 1, 1, 1)
+
+
+
+<CanvasScreen>:
+    name: "canvas"
+    BoxLayout:
+        orientation: "horizontal"
+
+
+        BoxLayout:
+            size: (50, 50)
+            size_hint: (0.1, 0.07)
+            pos_hint: {"top": 1, "left": 1}
+            cols: 1
+
+            LineWithButton:
+                font_size: 13
+                text: "Thin"
+
+            LineWithButton:
+                font_size: 13
+                text: "Normal"
+
+            LineWithButton:
+                font_size: 13
+                text: "Thick"
+
+            ToggleButton:
+                group: "color"
+                background_color: (1, 0, 0, 1)
+                state: "down"
+
+            ToggleButton:
+                background_color: (1, 1, 0, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (1, 0, 1, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (0, 1, 1, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (0, 0, 0, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (1, 1, 1, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (1, 0.7, 0.9, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (1, 0, 0, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (0, 0, 0, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (1.1, 0.1, 1.5, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (0.5, 0.7, 0.9, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (1, 0.3, 0.3, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (0.3, 0.7, 0.3, 1)
+                group: "color"
+
+            ToggleButton:
+                background_color: (0.1, 0.3, 0.7, 1)
+                group: "color"
+
+            Button:
+                font_size: 13
+                text: "Clear"
+                on_release: root.clear()
+
+<ExitScreen>:
+    name: "exit"
+
+    Label:
+        text: "Exit"
+
+    Button:
+        btn_size: (70, 70)
+        font_name: "Roboto"
+        font_size: 16
+        text: "Go back"
+        on_release:
+            app.root.current = "second"
+            root.manager.transition.direction = "right"
